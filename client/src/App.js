@@ -1,19 +1,22 @@
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Home from './pages/Login';
+import Home from './pages/Register';
 
-import { Button, Flex } from 'antd';
+import { Button, Divider, Flex } from 'antd';
 function App() {
   return (
-    <div className="App">
+   <div>
+    <BrowserRouter>
+    <Routes>
+     <Route path="/" element={<Home />} />
+     <Route path="/login" element={<Login />} />
+     <Route path="/register" element={<Register />} />
+     </Routes>
+      </BrowserRouter>
+     
 
-      <h1>Library-Management</h1>
-      <h2>Stack-Management</h2>
-      <Space wrap>
-    <Button type="primary">Primary Button</Button>
-    <Button>Default Button</Button>
-    <Button type="dashed">Dashed Button</Button>
-    <Button type="text">Text Button</Button>
-    <Button type="link">Link Button</Button>
-    </Space>
-    </div>
+   </div>
   );
 }
 
