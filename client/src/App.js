@@ -16,13 +16,14 @@ import './stylesheets/form-elements.css';
 
 
 import { Button, Divider, Flex } from 'antd';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
    <div>
     <BrowserRouter>
     <Routes>
-     <Route path="/" element={<Home />} />
+     <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
      <Route path="/login" element={<Login />} />
      <Route path="/register" element={<Register />} />
      </Routes>
