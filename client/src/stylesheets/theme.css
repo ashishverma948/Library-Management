@@ -1,7 +1,7 @@
 /* define our color */
 :root{
    --colour-primary : #00792e;
-   --colour-secondary: rgb(123, 50, 50);
+   --colour-secondary: rgb(164, 13, 13);
 
    .bg-primary{
     background-color: var(--colour-primary);
