@@ -20,6 +20,14 @@
     color:var(--colour-primary)
    }
 
+   .border-primary{
+     color: var(--colour-primary);
+   }
+
+   .border-secondary{
+    color:var(--colour-secondary);
+   }
+
    .text-secondary{
      color:var(--colour-secondary)
    }
