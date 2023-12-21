@@ -9,3 +9,4 @@ const port = process.env.PORT || 5000;
  app.use("/api/users",usersRoute);
 
 app.listen(port, () => console.log('node server started at ${port}'));
+// retrywrites=true&w=majority
