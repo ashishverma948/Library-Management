@@ -1,11 +1,21 @@
 import React from 'react';
-import { Button, Form } from "antd";
+import { Button, Form, message } from "antd";
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
+import { RegisterUser } from '../../apicalls/users';
 
 function Register() {
-  const onFinish = (values) => {
-    console.log("Success", values);
+  const onFinish = async(values) => {
+    try {
+      const response = await RegisterUser(values);
+      if(response.success) {
+        message.success(response.message);
+      }else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      message.error(error.message);
+    }
   };
   return (
     <div className='h-screen bg-primary flex item-center justify-center'>
@@ -28,6 +38,13 @@ function Register() {
             name="email">
             <Input type="email" placeholder="Email" />
           </Form.Item>
+
+          <Form.Item
+            label="phone Number"
+            name="phone">
+            <Input type="number" placeholder="phone Number" />
+          </Form.Item>
+
 
           <Form.Item
             label="Password"
