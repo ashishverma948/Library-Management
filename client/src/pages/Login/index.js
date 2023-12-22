@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Button, Form, message} from "antd";
 import Button from '../../components/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginUser } from '../../apicalls/users';
 import { response } from 'express';
 function Login() {
-
+   const navigate = useNavigate();
   const onFinish = async(values) =>{
     try {
       const response = await LoginUser(values);
@@ -20,6 +20,15 @@ function Login() {
       message.error(error.message);
     }
   };
+ 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if(token) {
+      navigate("/");
+    }
+  }, []);  
+
+
   return (
     <div className='h-screen bg-primary flex item-center justify-center'>
       <div className='authentication-form bg-white p-2'>

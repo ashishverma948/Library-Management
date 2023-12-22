@@ -23,7 +23,7 @@ export const LoginUser = async (payload) => {
 
 export const GetLoggedInUserDetails = async () => {
   try {
-    const response = await axiosInstance.get("/api/users/get-user-details");
+    const response = await axiosInstance.get("/api/users/get-Logged-in-user");
     return response.data;
   } catch (error) {
     throw error;

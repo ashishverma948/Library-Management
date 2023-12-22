@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { userNavigate } from "react-router-dom";
-import { GetLoggedInUserDetails, GetUserDetails } from '../apicalls/users';
+import { GetLoggedInUserDetails} from '../apicalls/users';
 import { message } from 'antd';
 function ProtectedRoute({children}) {
      const navigate = useNavigate();
@@ -30,10 +30,20 @@ function ProtectedRoute({children}) {
    }, [])
 
 
-  return 
+  return (
     <div>
-      {user && children}
-    </div>;
+      {user && (
+      <>
+        <h1>{user.name}</h1>
+        <h1>{user.email}</h1>
+        <h1>{user.role}</h1>
+        {children}
+        </>
+        )}
+
+      
+    </div>
+    );
   
 }
 
