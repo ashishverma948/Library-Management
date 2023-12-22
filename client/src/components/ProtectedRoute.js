@@ -4,13 +4,16 @@ import { GetLoggedInUserDetails} from '../apicalls/users';
 import { message } from 'antd';
 function ProtectedRoute({children}) {
      const navigate = useNavigate();
-     const [user, setUser] = useState(null);
+    //  const [user, setUser] = useState(null);
+
+    const {user} = useSelector(state=> state.users)
+    const dispatch = useDispatch();
 
      const validateUserToken = async () => {
          try {
            const response = await GetLoggedInUserDetails(); 
            if(response.success){
-                setUser(response.data)
+                dispatch(SetUser(response.data));
            }else{
             message.error(response.message);
            }
