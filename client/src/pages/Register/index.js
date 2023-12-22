@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { Form, message } from "antd";
 import Button from "../../components/Button";
@@ -5,6 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../apicalls/users";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
+=======
+import React, { useEffect } from 'react';
+import { Button, Form, message } from "antd";
+import Button from '../../components/Button';
+import { Link, useNavigate } from 'react-router-dom';
+import { RegisterUser } from '../../apicalls/users';
+import { useDispatch } from 'react-redux';
+import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
+import { form } from "antd";
+>>>>>>> 18bbe40f0e354ce4e2c9da8807252acecf5d2e29
 
 function Register() {
   const navigate = useNavigate();
