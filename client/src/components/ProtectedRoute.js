@@ -41,12 +41,23 @@ function ProtectedRoute({children}) {
   return (
     <div>
       {user && (
-      <>
-        <h1>{user.name}</h1>
-        <h1>{user.email}</h1>
-        <h1>{user.role}</h1>
+      <div className="p-1">
+      <div className="header p-2 bg-primary flex justify-center rounded">
+<h1 className="text-2xl text-white font-bold">
+  Library
+</h1>
+<div className="flex item-center">
+<i className="ri-shield-user-fill"></i>  
+<span className="text-md underline">
+{user.name}
+</span>
+<i className="ri-logout-box-r-line"></i>
+</div>
+      </div>
+       <div className="content">
         {children}
-        </>
+       </div>
+       </div>
         )}
 
       
