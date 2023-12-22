@@ -1,7 +1,7 @@
 
 import React, { useEffect } from "react";
 import { Form, message } from "antd";
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../apicalls/users";
 import { useDispatch } from "react-redux";

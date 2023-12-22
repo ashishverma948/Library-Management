@@ -2,7 +2,7 @@ import { Col, message, Row, Table, Badge } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { DeleteBook, GetAllBooks } from "../../apicalls/books";
+// import { DeleteBook, GetAllBooks } from "../../apicalls/books";
 import Button from "../../components/Button";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 
