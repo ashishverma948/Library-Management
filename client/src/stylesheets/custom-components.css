@@ -8,6 +8,7 @@
 }
 .underline{
     text-decoration:underline;
+    cursor: pointer;
 }
 
 a:hover{
@@ -34,6 +35,13 @@ a:hover{
     border-radius: 50%;
     animation: loader-anim 1s linear infinite;
 
+}
+.rounded {
+border-radius: 4px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
 /* reloading hone ke leye */
 @keyframes loader-anim{
