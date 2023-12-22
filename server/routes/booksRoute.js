@@ -9,7 +9,7 @@ router.post("/add-book", authMiddleware, async (req,res)=>{
 await newBook.save();
 return res.send({ success: true, message: "Book added successfully" });
     } catch (error) {
-        return res.send({success: false,message: error.message});
+        return res.send({success: false, message: error.message});
     }
 });
 
@@ -31,7 +31,7 @@ router.delete("/delete-book/:id", authMiddleware, async (req,res) =>{
         await Book.findByIdAndDelete(req.params.id);
         return res.send({ success: true, message: "Book deleted successfully" });
     } catch(error){
-return res.send({ success: false,message: error.message });
+return res.send({ success: false, message: error.message });
     }
 });
 
@@ -42,7 +42,18 @@ router.get("/get-all-books", authMiddleware, async (req,res) =>{
         const books = await Book.find();
         return res.send({ success: true, data: books });
     } catch(error){
-return res.send({ success: false,message: error.message });
+return res.send({ success: false, message: error.message });
     }
 });
 // get a book by id
+
+router.get("/get-book-by-id/:id", authMiddleware, async (req,res) =>{
+    try{
+        const book = await Book.findById(req.params.id);
+        return res.send({ success: true, data: boom });
+    } catch(error){
+return res.send({ success: false, message: error.message });
+    }
+});
+
+module.exports = router;
