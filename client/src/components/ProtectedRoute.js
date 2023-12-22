@@ -41,12 +41,30 @@ function ProtectedRoute({children}) {
   return (
     <div>
       {user && (
-      <>
-        <h1>{user.name}</h1>
-        <h1>{user.email}</h1>
-        <h1>{user.role}</h1>
+      <div className="p-1">
+      <div className="header p-2 bg-primary flex justify-between rounded item-center">
+<h1 className="text-2xl text-white font-bold cursor-pointer"
+ onClick={() =>navigate("/")}
+ >
+  Library
+</h1>
+<div className="flex item-center gap-1 bg-white p-1 rounded">
+<i className="ri-shield-user-line"></i>  
+<span className="text-sm underline"
+onClick={()=> navigate("/profile")}
+>{user.name.toUpperCase()}</span>
+<i className="ri-logout-box-r-line ml-2"
+onClick={() =>{
+  localStorage.removeItem("token");
+  navigate("/login");
+}}
+></i>
+</div>
+      </div>
+       <div className="content mt-1">
         {children}
-        </>
+       </div>
+       </div>
         )}
 
       

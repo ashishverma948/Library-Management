@@ -37,7 +37,7 @@ function Register() {
   }, []);
   return (
     <div className='h-screen bg-primary flex item-center justify-center'>
-      <div className='authentication-form bg-white p-2'>
+      <div className='authentication-form bg-white p-3 rounded'>
         <h1 className="text-secondary text-2xl">
           Library-Register
         </h1>
