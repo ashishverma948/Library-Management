@@ -11,6 +11,7 @@
     "nodemon": "^3.0.2",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.0",
+    "react-scripts": "^5.0.1",
     "redux": "^5.0.0"
   },
   "name": "library-management",
@@ -18,6 +19,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
