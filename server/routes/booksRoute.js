@@ -12,3 +12,13 @@ return res.send({ success: true, message: "Book added successfully" });
         return res.send({success: false,message: error.message});
     }
 });
+
+//update book
+router.put("/update-book/:id", authMiddleware, async (req,res) =>{
+    try{
+        await Book.findByIdAndUpdate(req.params.id, req.body);
+        return res.send({ success: true, message: "Book updated successfully" });
+    } catch(error){
+return res.send({ success: false,message: error.message });
+    }
+});
