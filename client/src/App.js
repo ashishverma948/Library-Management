@@ -2,8 +2,8 @@
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Home from './pages/Login';
-import Home from './pages/Register';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 // import css
 import './stylesheets/alignments.css';
