@@ -17,11 +17,17 @@ import './stylesheets/form-elements.css';
 
 import { Button, Divider, Flex } from 'antd';
 import ProtectedRoute from './components/ProtectedRoute';
+import Loader from "./components/Loader";
+import { useSelector } from 'react-redux';
 
 function App() {
+  const {loading} = useSelector((state)=> state.loaders);
   return (
    <div>
+    {loading && <Loader/>}
+
     <BrowserRouter>
+
     <Routes>
      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
      <Route path="/login" element={<Login />} />

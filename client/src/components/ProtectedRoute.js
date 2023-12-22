@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { userNavigate } from "react-router-dom";
 import { GetLoggedInUserDetails} from '../apicalls/users';
 import { message } from 'antd';
+import { HideLoading, ShowLoading } from '../redux/loadersSlice';
 function ProtectedRoute({children}) {
      const navigate = useNavigate();
     //  const [user, setUser] = useState(null);
@@ -11,13 +12,17 @@ function ProtectedRoute({children}) {
 
      const validateUserToken = async () => {
          try {
+
+          dispatch(ShowLoading())
            const response = await GetLoggedInUserDetails(); 
+           dispatch(HideLoading())
            if(response.success){
                 dispatch(SetUser(response.data));
            }else{
             message.error(response.message);
            }
          } catch (error) {
+          dispatch(HideLoading())
            message.error(error.message);
          }
 
