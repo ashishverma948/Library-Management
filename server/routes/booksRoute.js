@@ -35,3 +35,14 @@ return res.send({ success: false,message: error.message });
     }
 });
 
+//get all books
+
+router.get("/get-all-books", authMiddleware, async (req,res) =>{
+    try{
+        const books = await Book.find();
+        return res.send({ success: true, data: books });
+    } catch(error){
+return res.send({ success: false,message: error.message });
+    }
+});
+// get a book by id

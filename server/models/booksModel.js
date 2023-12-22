@@ -1,14 +1,15 @@
+
 const mongoose = require('mongoose');
 const bookSchema = new mongoose.Schema({
 title: {
 type: String,
 required: true,
 },
-description :{
+description : {
     type: String,
     required: true,
 },
-image :{
+image : {
     type: String,
     required: true,
 },
@@ -24,19 +25,19 @@ publishedOn :{
     type: Date,
     required: true,
 },
-rentPerDay :{
+rentPerDay : {
     type: Number,
     required: true,
 },
-totalCopies :{
+totalCopies : {
     type: Number,
     required:true,
 },
-availableCopies :{
+availableCopies : {
     type: Number,
     required: true,
 },
-createdBy :{
+createdBy : {
     type:mongoose.Schema.Types.ObjectId,
     ref: "users",
     required: true,
