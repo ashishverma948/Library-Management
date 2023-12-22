@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../../apicalls/users';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
+import { form } from "antd";
 
 function Register() {
   const navigate = useNavigate();
