@@ -14,6 +14,7 @@ return res.send({ success: true, message: "Book added successfully" });
 });
 
 //update book
+
 router.put("/update-book/:id", authMiddleware, async (req,res) =>{
     try{
         await Book.findByIdAndUpdate(req.params.id, req.body);
@@ -22,3 +23,15 @@ router.put("/update-book/:id", authMiddleware, async (req,res) =>{
 return res.send({ success: false,message: error.message });
     }
 });
+
+// delete a book 
+
+router.delete("/delete-book/:id", authMiddleware, async (req,res) =>{
+    try{
+        await Book.findByIdAndDelete(req.params.id);
+        return res.send({ success: true, message: "Book deleted successfully" });
+    } catch(error){
+return res.send({ success: false,message: error.message });
+    }
+});
+
