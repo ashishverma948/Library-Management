@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tabs } from 'antd'
 import Books from "./Books";
-import Users from "./Users";
+import Patrons from './Patrons';
 const Tabpane = Tabs.Tabpane;
 
 function Profile() {
@@ -11,8 +11,8 @@ function Profile() {
         <Tabpane tab="Books" key="1">
           <Books />
         </Tabpane>
-        <Tabpane tab="Users" key="2">
-          <Users />
+        <Tabpane tab="Patrons" key="2">
+          <Patrons />
         </Tabpane>
       </Tabs>
     </div>
