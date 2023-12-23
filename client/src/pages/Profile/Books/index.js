@@ -8,6 +8,8 @@ import { message } from 'antd';
 import { HideLoading, ShowLoading } from '../../../redux/loadersSlice';
 
 function Books() {
+  const [formType,setFormType] = useState('add');
+  const [selectedBook,setSelectedBook] = useState(null);
   const [openBookForm , setOpenBookForm] = React.userState(false);
      const [books, setBooks] = React.useState([]);
      const dispatch = useDispatch();
@@ -74,7 +76,13 @@ dataIndex: "author",
     className ="flex gap-1">
 
       <i class="ri-delete-bin-5-line"></i>
-<i className="ri-pencil-line"></i>
+<i className="ri-pencil-line"
+ onClick ={()=>{
+  setFormType("edit");
+  setSelectedBook(record);
+  setOpenBookForm(true);
+ }}
+></i>
     </div>
   ),
 }
@@ -92,6 +100,10 @@ dataIndex: "author",
       {openBookForm && (
       <BookForm open={openBookForm} setOpen={setOpenBookForm} 
       reloadBooks = {getbooks}
+
+      formType ={formType}
+      selectedBook = {selectedBook}
+      setSelectedBook = {setSelectedBook}
       />
     )}
     </div>

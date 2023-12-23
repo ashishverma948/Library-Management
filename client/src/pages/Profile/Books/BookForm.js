@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { AddBook } from '../../../apicalls/books';
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
 
-function BookForm({ open, setOpen ,reloadData}) {
+function BookForm({ open, setOpen ,reloadData,setFormType, formType,selectedBook,setSelectBook}) {
    const {user} = useSelector(state => state.users);
    const dispatch = useDispatch();
    const onFinish = async(values) => {
@@ -35,7 +35,7 @@ function BookForm({ open, setOpen ,reloadData}) {
 
   return (
   <Modal
-  title="Add Book"
+  title={formType === "add" ? "Add Book" : "Update Book"}
   open={open}
   onCancel={() => setOpen(false)}
   centered
@@ -45,6 +45,12 @@ function BookForm({ open, setOpen ,reloadData}) {
       <Form
       layout="vertical"
       onFinish={onFinish}
+      initialValues={
+        {
+            ...selectedBook,
+            publishedDate :selectedBook?.publishedDate? new Date(selectedBook?.publishDate).toISOString().split('T')[0] :null
+        }
+      }
       >
         <Row
            gutter={[20,20]}
