@@ -183,6 +183,7 @@ dataIndex: "author",
        setOpen = {setOpenIssuesOpen}
        selectedBook={selectedBook}
        setSelectedBook={setSelectedBook}
+       getData = {getBooks}
      />
     )}
     </div>

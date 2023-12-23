@@ -5,14 +5,19 @@ function Button({
     variant= "contained",
     color = "primary", type = 'button',
     onClick,
-    fullWidth = false
+    fullWidth = false,
+    disabled
 }){
 
     let className= fullWidth ? "w-100 rounded " : "pr-2 pl-2 rounded ";
-    if(variant==="contained"){
+    if(variant==="contained" && !disabled){
         className +='bg-' + color + "text-white";
-    }else if (variant ==="outlined") {
+    }else if (variant ==="outlined" && !disabled) {
         className += "border-" + color + "text-" + color;
+    }
+
+    if(disabled){
+        className+= "disabled-btn";
     }
     return(
         <button
