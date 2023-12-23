@@ -45,6 +45,10 @@ border-radius: 4px;
 }
 i{
     cursor: pointer;
+    font-size: 15px;
+}
+table{
+    border: 1px solid #c5c2c2;
 }
 /* reloading hone ke leye */
 @keyframes loader-anim{
