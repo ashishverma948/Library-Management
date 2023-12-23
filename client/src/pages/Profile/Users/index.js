@@ -7,13 +7,13 @@ import { HideLoading, ShowLoading } from '../../../redux/loadersSlice';
 
 import moment from "moment";
 import { GetAllUsers } from '../../../apicalls/users';
-function Patrons() {
+function Users(role) {
  const [users, setUsers] = React.useState([]);
  const dispatch =useDispatch();
  const getUsers  = async () => {
   try {
     dispatch(ShowLoading());
-    const response= await GetAllUsers('patron');
+    const response= await GetAllUsers(role);
     dispatch(HideLoading());
     if(response.success) {
       setUsers(response.data);
@@ -65,4 +65,4 @@ const columns = [
     </div>
   }
 
-export default Patrons;
+export default Users;
