@@ -8,12 +8,16 @@ import { message } from 'antd';
 import { HideLoading, ShowLoading } from '../../../redux/loadersSlice';
 import BookForm from "./BookForm";
 import moment from "moment";
+import IssueForm from './IssueForm';
 
 function Books() {
   const [formType,setFormType] = useState('add');
   const [selectedBook,setSelectedBook] = useState(null);
   const [openBookForm , setOpenBookForm] = React.userState(false);
-     const [books, setBooks] = React.useState([]);
+  const [openIssues,setOpenIssues] = React.useState(false);
+  const [openIssuesForm,setOpenIssuesForm] = React.useState(false);
+  const [Books,setBooks] = React.useState([]);
+
      const dispatch = useDispatch();
 
      const getbooks = async () => {
@@ -109,6 +113,7 @@ dataIndex: "author",
       <i class="ri-delete-bin-5-line"
       onClick={()=> deleteBook(record._id)}
       ></i>
+
 <i className="ri-pencil-line"
  onClick ={()=>{
   setFormType("edit");
@@ -116,6 +121,26 @@ dataIndex: "author",
   setOpenBookForm(true);
  }}
 ></i>
+    
+    <span
+    className = "underline"
+      
+       onClick = {()=>{
+        setOpenIssues(true);
+        setSelectedBook(record);
+       }
+      }
+    > Issues </span>
+
+    <span
+     className = "underline"
+     onClick = {()=>{
+       setOpenIssuesForm(true);
+       setSelectedBook(record);
+     }}
+    >
+      Issue Book
+    </span>
     </div>
   ),
 }
@@ -143,6 +168,22 @@ dataIndex: "author",
       selectedBook = {selectedBook}
       setSelectedBook = {setSelectedBook}
       />
+    )}
+    {openIssues && (
+      <Issues
+      open = {openIssues}
+      setOpen = {setOpenIssues}
+      selectedBook = {selectedBook}
+      setSelectedBook = {setSelectedBook}
+      />
+    )}
+    {openIssuesForm && (
+      <IssueForm
+       open = {openIssuesForm}
+       setOpen = {setOpenIssuesOpen}
+       selectedBook={selectedBook}
+       setSelectedBook={setSelectedBook}
+     />
     )}
     </div>
   );
