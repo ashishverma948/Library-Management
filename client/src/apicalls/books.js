@@ -18,3 +18,27 @@ export const GetAllBooks = async () => {
         throw error;
     }
 }
+
+//update book
+
+export const UpdateBook = async (payload)=>{
+
+    try{
+        const response = await axiosInstance.put(`/api/books/update-book/${payload._id}`,payload);
+        return response.data;
+    }
+    catch (error){
+        throw error;
+    }
+};
+
+// delete book
+export const DeleteBook = async  (id) =>{
+    try{
+        const DeleteBook = await axiosInstance(delete(`/api/books/delete-books/${id}`));
+        return response.data;
+    }
+    catch(error){
+        throw error;
+    }
+};

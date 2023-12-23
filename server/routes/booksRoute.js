@@ -39,7 +39,7 @@ return res.send({ success: false, message: error.message });
 
 router.get("/get-all-books", authMiddleware, async (req,res) =>{
     try{
-        const books = await Book.find();
+        const books = await Book.find().sort({createdAt :-1});
         return res.send({ success: true, data: books });
     } catch(error){
 return res.send({ success: false, message: error.message });

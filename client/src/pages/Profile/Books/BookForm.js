@@ -13,8 +13,15 @@ function BookForm({ open, setOpen ,reloadData,setFormType, formType,selectedBook
     try {
         dispatch(ShowLoading());
           values.createdBy = user._id;
-          values.availableCopies = values.totalCopies;
-        const response = await AddBook(values);
+          let response = null;
+          if(formType ==="add"){
+              values.availableCopies = values.totalCopies;
+            response = await AddBook(values);
+        }
+        else{
+            values.id = selectedBook._id;
+            response = await AddBook(values);
+        }
         if(response.success)
         {
             message.success(response.message);

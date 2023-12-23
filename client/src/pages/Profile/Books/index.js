@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import Button from '../../../components.Button';
 import BookForm from "./BookForm";
 import { response } from 'express';
-import { GetAllBooks } from '../../../apicalls/books';
+import { DeleteBook, GetAllBooks } from '../../../apicalls/books';
 import { message } from 'antd';
 import { HideLoading, ShowLoading } from '../../../redux/loadersSlice';
+import BookForm from "./BookForm";
+import moment from "moment";
 
 function Books() {
   const [formType,setFormType] = useState('add');
@@ -17,7 +19,7 @@ function Books() {
      const getbooks = async () => {
       try {
           dispatch(ShowLoading());
-          const response = await GetAllBooks();
+          const response = await DeleteBook();
           dispatch(HideLoading());
           if (response.success){
             setBooks(response.data);
@@ -37,6 +39,28 @@ function Books() {
       getbooks()
 
      }, []);
+
+     const deleteBook = async (id) =>{
+
+      try{
+        dispatch(ShowLoading());
+        const response = await DeleteBook(id);
+        dispatch(HideLoading());
+
+           if(response.success){
+            message.success(response.message);
+            getbooks();
+           }
+           else{
+            message.error(response.message);
+           }
+      }
+      catch (error){
+        dispatch(HideLoading());
+        message.error(error.message);
+      }
+     };
+
 
      const columns = [
       {
@@ -64,10 +88,17 @@ dataIndex: "author",
   title: "Total copies",
   dataIndex: "totalcopies",
 },
+
 {
   title: "Available copies",
   dataIndex: "availablecopies",
 },
+{
+  title :"Added On",
+  dataIndex : "createdAt",
+  render : (date) => moment(date).format("DD-MM-YYYY hh:mm::ss A"),
+},
+
 {
   title :"Action",
   dataIndex : "action",
@@ -75,7 +106,9 @@ dataIndex: "author",
     <div
     className ="flex gap-1">
 
-      <i class="ri-delete-bin-5-line"></i>
+      <i class="ri-delete-bin-5-line"
+      onClick={()=> deleteBook(record._id)}
+      ></i>
 <i className="ri-pencil-line"
  onClick ={()=>{
   setFormType("edit");
@@ -91,7 +124,12 @@ dataIndex: "author",
     <div>
       <div className = "flex justify-end">
           <Button title='Add Book'
-          onClick={() => setOpenBookForm(true)}
+          onClick={() => {
+            setFormType("add");
+            setSelectedBook(null);
+            setOpenBookForm(true)
+
+          }}
           />
       </div>
 
