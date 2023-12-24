@@ -32,8 +32,42 @@ function BookDescription() {
     },[]);
   return (
     <div>
-        <h1>BookDescription</h1>
-        <h2>Book Id:</h2>
+       <Row>
+        <Col 
+            xs = {24}
+            sm  ={24}
+            md = {12}
+            lg = {12}
+            xl = {12}
+            className = "flex flex-col gap-3"
+        >
+            <h1 className='text-2xl text-secondary uppercase font-bold mt-2'>
+                {bookData?.title0}
+            </h1>
+            <img src = {bookData.image} alt ="" height = {400} width ={350}/>
+            <p>{bookData?.description}</p>
+        </Col>
+        <Col xs = {24} sm = {24} md = {12} lg = {12} xl = {12}>
+            <div className='flex justify-center'>
+                <h1 className='text-md'>Author</h1>
+                <h1 className='text-md'>{bookData?.author}</h1>
+            </div>
+            <div className='flex justify-center'>
+                <h1 className='text-md'>Publisher</h1>
+                <h1 className='text-md'>{bookData?.publisher}</h1>
+            </div>
+
+            <div className='flex justify-center'>
+                <h1 className='text-md'>PublishedDate</h1>
+                <h1 className='text-md'>{bookData?.publishedDate}</h1>
+            </div>
+
+            <div className='flex justify-center'>
+                <h1 className='text-md'>Available Copies</h1>
+                <h1 className='text-md'>{bookData?.availableCopies}</h1>
+            </div>
+        </Col>
+       </Row>
     </div>
   );
 }
