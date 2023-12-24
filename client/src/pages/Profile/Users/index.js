@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import BookForm from "./BookForm";
 import { response } from 'express';
@@ -7,7 +7,10 @@ import { HideLoading, ShowLoading } from '../../../redux/loadersSlice';
 
 import moment from "moment";
 import { GetAllUsers } from '../../../apicalls/users';
+import IssuedBooks from './IssuedBooks';
 function Users(role) {
+
+  const [selectedUser,setSelectedUser] = useState(null);
  const [users, setUsers] = React.useState([]);
  const dispatch =useDispatch();
  const getUsers  = async () => {
@@ -53,7 +56,12 @@ const columns = [
     dataIndex: "actions",
     render: (actions,record) => (
       <div>
-        <Button title="Books" varient="outlined" />
+        <Button title="Books" varient="outlined"
+        onClick={()=>{
+          setSelectedUser(record);
+          setShowIssueBooks(true);
+        }}
+         />
       </div>
     ),
   },
@@ -61,7 +69,14 @@ const columns = [
 
 
  return  <div>
-    <Table dataSource={users} columns={columns} />
+    <Table dataSource={users} columns={columns}/>
+    {setShowIssueBooks && (
+      <IssuedBooks
+     showIssuedBooks = {showIssuedBooks}
+      setShowIssuedBooks = {setShowIssuedBooks} 
+      selectedUser={selectedUser}
+      />
+    )}
     </div>
   }
 
