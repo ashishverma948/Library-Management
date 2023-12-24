@@ -19,6 +19,7 @@ import { Button, Divider, Flex } from 'antd';
 import ProtectedRoute from './components/ProtectedRoute';
 import Loader from "./components/Loader";
 import { useSelector } from 'react-redux';
+import BookDescription from './pages/BookDescription';
 
 function App() {
   const {loading} = useSelector((state)=> state.loaders);
@@ -30,6 +31,9 @@ function App() {
 
     <Routes>
      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+     
+     <Route path="/book/:id" element={<ProtectedRoute><BookDescription /></ProtectedRoute>} />
+ 
      <Route path="/Profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
  
 
