@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { Modal, Table, message } from 'antd'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
@@ -8,6 +9,18 @@ import Button from "../../..components/Button";
 import IssueForm from "./IssueForm";
 
 function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
+=======
+import React, { useEffect } from "react";
+import { message, Modal, Table } from "antd";
+import { useDispatch } from "react-redux";
+import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
+import { DeleteIssue, GetIssues, ReturnBook } from "../../../apicalls/issues";
+import moment from "moment";
+import Button from "../../../components/Button";
+import IssueForm from "./IssueForm";
+
+function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
+>>>>>>> Stashed changes
   const [issues, setIssues] = React.useState([]);
   const [selectedIssue, setSelectedIssue] = React.useState(null);
   const [showIssueForm, setShowIssueForm] = React.useState(false);
@@ -28,6 +41,7 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
     }
   };
 
+<<<<<<< Updated upstream
   useEffect(()=> {
     getIssues();
   },[]);
@@ -48,10 +62,28 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
         issue.fine = fine;
       }
 
+=======
+  useEffect(() => {
+    getIssues();
+  }, []);
+
+  const onReturnHandler = async (issue) => {
+    try {
+      // check if the book is returned before due date
+      const today = moment().format("YYYY-MM-DD");
+      const dueDate = moment(issue.returnDate).format("YYYY-MM-DD");
+      if (today > dueDate) {
+        // book is returned after due date
+        // calculate the fine
+        const fine = moment(today).diff(dueDate, "days") * 1;
+        issue.fine = fine;
+      }
+>>>>>>> Stashed changes
       issue.returnedDate = new Date();
       issue.book = issue.book._id;
       dispatch(ShowLoading());
       const response = await ReturnBook(issue);
+<<<<<<< Updated upstream
 
       dispatch(HideLoading());
       if(response.success){
@@ -63,6 +95,38 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
         message.error(reponse.message);
       }
     }  catch(error){
+=======
+      dispatch(HideLoading());
+      if (response.success) {
+        message.success(response.message);
+        getIssues();
+        reloadBooks();
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
+  const deleteIssueHandler = async (issue) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await DeleteIssue({
+        ...issue,
+        book: issue.book._id,
+      });
+      dispatch(HideLoading());
+      if (response.success) {
+        message.success(response.message);
+        getIssues();
+        reloadBooks();
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+>>>>>>> Stashed changes
       dispatch(HideLoading());
       message.error(error.message);
     }
@@ -146,6 +210,7 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
 
   return (
     <Modal
+<<<<<<< Updated upstream
     title = ""
     open = {open}
     onCancel = {() => setOpen(false)}
@@ -164,6 +229,21 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
     />
 
 {showIssueForm && (
+=======
+      title=""
+      open={open}
+      onCancel={() => setOpen(false)}
+      footer={null}
+      width={1400}
+      centered
+    >
+      <h1 className="text-xl mt-1 mb-1 text-secondary uppercase font-bold text-center">
+        Issues of {selectedBook.title}
+      </h1>
+      <Table columns={columns} dataSource={issues} />
+
+      {showIssueForm && (
+>>>>>>> Stashed changes
         <IssueForm
           selectedBook={selectedBook}
           selectedIssue={selectedIssue}
@@ -181,4 +261,8 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
   );
 }
 
+<<<<<<< Updated upstream
 export default Issues
+=======
+export default Issues;
+>>>>>>> Stashed changes

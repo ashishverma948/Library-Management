@@ -1,32 +1,31 @@
-// import browse router redux toolkit
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-
-// import css
-import './stylesheets/alignments.css';
-import './stylesheets/theme.css';
-import './stylesheets/sizes.css';
-import './stylesheets/custom-components.css';
-import './stylesheets/form-elements.css';
-
-
-
-
-import { Button, Divider, Flex } from 'antd';
-import ProtectedRoute from './components/ProtectedRoute';
+import "./stylesheets/alignments.css";
+import "./stylesheets/theme.css";
+import "./stylesheets/sizes.css";
+import "./stylesheets/custom-components.css";
+import "./stylesheets/form-elements.css";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Loader from "./components/Loader";
+<<<<<<< Updated upstream
 import { useSelector } from 'react-redux';
 import BookDescription from './pages/BookDescription';
+=======
+import { useSelector } from "react-redux";
+import Profile from "./pages/Profile";
+import BookDescription from "./pages/BookDescription";
+>>>>>>> Stashed changes
 
 function App() {
-  const {loading} = useSelector((state)=> state.loaders);
+  const { loading } = useSelector((state) => state.loaders);
   return (
-   <div>
-    {loading && <Loader/>}
+    <div>
+      {loading && <Loader />}
 
+<<<<<<< Updated upstream
     <BrowserRouter>
 
     <Routes>
@@ -44,6 +43,40 @@ function App() {
      
  
    </div>
+=======
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/book/:id"
+            element={
+              <ProtectedRoute>
+                <BookDescription />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+>>>>>>> Stashed changes
   );
 }
+
 export default App;

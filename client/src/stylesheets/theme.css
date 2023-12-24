@@ -1,65 +1,60 @@
-/* define our color */
-:root{
-   --colour-primary : #00792e;
-   --colour-secondary: rgb(164, 13, 13);
+:root {
+    --colour-primary: #034742;
+    --colour-secondary: #4f1803;
+}
 
-   .bg-primary{
+.bg-primary {
     background-color: var(--colour-primary);
+}
 
-   }
-   .bg-secondary{
-     background-color: var(--colour-secondary);
-   }
+.bg-secondary {
+    background-color: var(--colour-secondary);
+}
 
-   .bg-white{
+.bg-white {
     background-color: #fff;
-   }
-   /* text color set */
+}
 
-   .text-primary{
-    color:var(--colour-primary)
-   }
+.text-primary {
+    color: var(--colour-primary);
+}
 
-   .border-primary{
-     color: var(--colour-primary);
-   }
+.text-secondary {
+    color: var(--colour-secondary);
+}
 
-   .border-secondary{
-    color:var(--colour-secondary);
-   }
+.border-primary {
+    border-color: var(--colour-primary);
+}
 
-   .text-secondary{
-     color:var(--colour-secondary)
-   }
-   .text-white{
+.border-secondary {
+    border-color: var(--colour-secondary);
+}
+
+.text-white {
     color: #fff;
-   }
+}
 
-   .text-sm{
-    font-size:14px;
-   }
-   .text-lg{
+.text-sm {
+    font-size: 14px;
+}
+
+.text-md {
     font-size: 16px;
-   }
-   .text-xl{
-    font-size:20px;
-   }
-   .text-2xl{
-       font-size:24px;
-   }
+}
 
-   .text-3xl{
-      font-size: 28px;
-   }
+.text-lg {
+    font-size: 18px;
+}
 
-   
+.text-xl {
+    font-size: 20px;
+}
 
+.text-2xl {
+    font-size: 24px;
+}
 
-
-
-
-
-
-
-
+.text-3xl {
+    font-size: 28px;
 }

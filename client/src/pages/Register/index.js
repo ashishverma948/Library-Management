@@ -1,7 +1,6 @@
-
 import React, { useEffect } from "react";
 import { Form, message } from "antd";
-// import Button from "../../components/Button";
+import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../apicalls/users";
 import { useDispatch } from "react-redux";
@@ -38,7 +37,7 @@ function Register() {
     <div className="h-screen bg-primary flex items-center justify-center">
       <div className="authentication-form bg-white p-3 rounded">
         <h1 className="text-secondary text-2xl font-bold mb-1">
-          SHEYLIBRAY - REGISTER
+          Library-Register
         </h1>
         <hr />
         <Form layout="vertical" onFinish={onFinish}>
