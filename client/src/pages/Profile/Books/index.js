@@ -175,6 +175,7 @@ dataIndex: "author",
       setOpen = {setOpenIssues}
       selectedBook = {selectedBook}
       setSelectedBook = {setSelectedBook}
+      reloadBooks = {getBooks}
       />
     )}
     {openIssuesForm && (

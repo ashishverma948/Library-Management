@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading, showLoading } from "../../../redux/loadersSlice";
 import { ReturnBook } from '../../../apicalls/issues';
 
-function Issues({ open = false, setOpen, selectedBook}) {
+function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
   const [issues, setIssues] = React.useState([]);
   const [selectedIssue, setSelectedIssue] = React.useState(null);
   const [showIssueForm, setShowIssueForm] = React.useState(false);
@@ -46,7 +46,7 @@ function Issues({ open = false, setOpen, selectedBook}) {
       }
 
       issue.returnedDate = new Date();
-      
+      issue.book = issue.book._id;
       dispatch(ShowLoading());
       const response = await ReturnBook(issue);
 
@@ -54,6 +54,7 @@ function Issues({ open = false, setOpen, selectedBook}) {
       if(response.success){
         message.success(response.success);
         getIssues();
+        reloadBooks();
       }
       else{
         message.error(reponse.message);
@@ -142,12 +143,17 @@ function Issues({ open = false, setOpen, selectedBook}) {
 
   return (
     <Modal
-    title = "Issues"
+    title = ""
     open = {open}
     onCancel = {() => setOpen(false)}
     footer = {null}
-    width = {1200}
+    width = {1400}
     >
+
+      <h1
+      className="text-xl mt-1 mb-1 text-secondary uppercase font-bold text-center">
+        Issues of {selectedBook.title}
+      </h1>
     <Table
        columns = {columns}
        dataSource = {issues}
