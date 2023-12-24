@@ -2,17 +2,21 @@ import { Button, Modal, message } from 'antd';
 import React, { useEffect } from 'react'
 import { HideLoading, ShowLoading } from '../../../redux/loadersSlice';
 import { GetIssues } from '../../../apicalls/issues';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from "moment";
+import Button from "../../../components/Button";
 
-function IssuedBooks({setShowIssuedBooks,setShowIssuedBooks,selectedUser}) {
 
+function IssuedBooks() {
+
+  const {user} = useSelector((state) => state.users);
     const [IssuedBooks,setIssuedBooks] = React.useState([]);
     const dispatch = useDispatch();
     const getIssues = async () => {
       try {
         dispatch(ShowLoading());
         const response = await GetIssues({
-          user : selectedUser._id,
+          user : user._id,
         });
         dispatch(HideLoading());
         if (response.success) {
@@ -76,20 +80,9 @@ function IssuedBooks({setShowIssuedBooks,setShowIssuedBooks,selectedUser}) {
     },[]);
 
   return (
-     <Modal
-     open = {setShowIssuedBooks}
-     onCancel={()=> setShowIssuedBooks(false)}
-     footer = {null}
-     width = {1400}
-     >
-        <h1
-        className="text-secondary mb-1 text-xl text-center font-bold uppercase"
-        >
-            {selectedUser.name}'s Issued Books
-        </h1>
+    
 
         <Table columns = {columns} dataSource = {IssuedBooks}/>
-     </Modal>
   );
 }
 
