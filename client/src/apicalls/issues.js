@@ -30,4 +30,14 @@ export const ReturnBook = async (payload) => {
     }
 }
 
+//edit an issue
+export const EditIssue = async(payload)=>{
+    try{
+       const response = await axiosInstance.post("/api/issues/edit-issue",payload);
+       return response.data;
+    }catch(error){
+      throw error;
+    }
+}
+
 

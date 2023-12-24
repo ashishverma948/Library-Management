@@ -5,7 +5,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from 'react-redux';
 import { GetUserById } from '../../../apicalls/users';
 import {HideLoading,ShowLoading} from "../../../redux/loadersSlice";
-import { IssueBook } from '../../../apicalls/issues';
+import { EditIssue, IssueBook } from '../../../apicalls/issues';
 
 function IssueForm(
     {
@@ -61,15 +61,30 @@ function IssueForm(
       const onIssue = async() =>{
         try{
           dispatch(ShowLoading());
-          const response = await IssueBook({
-            book : selectedBook._id,
-            user : patronData._id,
-            issueDate : new Date(),
-            returnDate,
-            rent: moment(returnDate).diff(moment(), "days")*selectedBook ?.rentPerDay,
-            fine:0,
-            issuedBy : user._id,
-          });
+          let reponse = null;
+          
+          if(type !=="edit"){
+             response = await IssueBook({
+              book : selectedBook._id,
+              user : patronData._id,
+              issueDate : new Date(),
+              returnDate,
+              rent: moment(returnDate).diff(moment(), "days")*selectedBook ?.rentPerDay,
+              fine:0,
+              issuedBy : user._id,
+            });
+          }
+          else{
+            response = await EditIssue({
+              book : selectedBook._id,
+              user : patronData._id,
+              issueDate : selectedIssue.issueDate,
+              returnDate,
+              rent: moment(returnDate).diff(moment(), "days")*selectedBook ?.rentPerDay,
+              fine:0,
+              issuedBy : user._id,
+            });
+          }
           dispatch(HideLoading());
           if(response.success){
             message.success(response.message);
@@ -166,7 +181,6 @@ function IssueForm(
 
         {validated && (
           <Button title = {type ==="edit" ? "Edit" :"Issue"}
-          
           onClick = {onIssue}
           disabled = {patronId ==="" || returnDate ===""}
           />
