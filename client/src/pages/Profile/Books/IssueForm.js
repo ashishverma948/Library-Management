@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from "../../../components/Button";
 import moment from "moment";
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,13 +14,19 @@ function IssueForm(
         selectedBook,
         setSelectedBook,
         getData,
+        selectedIssue,
+        type
     }) {
       const {user} = useSelector(state => state.users);
       const [valiadated,setValidated] = React.useState(false);
       const [errorMessage,setErrorMessage] = React.useState("");
       const [patronData,setPatronData] = useState(null);
-      const [patronId,setPatronId] = React.useState("");
-      const [returnDate,setReturnDate] = React.useState("");
+      const [patronId, setPatronId] = React.useState(
+        type === "edit" ? selectedIssue.user._id : ""
+      );
+      const [returnDate, setReturnDate] = React.useState(
+        type === "edit" ? moment(selectedIssue.returnDate).format("YYYY-MM-DD") : ""
+      );
       const dispatch = useDispatch();
 
       const validate = async()=>{
@@ -83,32 +89,49 @@ function IssueForm(
           message.error(error.message);
         }
       }
+
+      useEffect(()=>{
+        if(type==="edit"){
+          validate();
+        }
+      }, [open]);
   return (
     <Modal
     title = ""
      open = {open}
      onCancel = {() => setOpen(false)}
      footer  ={null}
+     centered
     >
     <div className = "flex flex-col gap-2 items-center">
       <h1 className = "text-secondary font-bold text-xl uppercase text-center">
-        Issue New Book
+        {type ==="edit" ? "Edit / Renew Issue": "Issue Book"}
       </h1>
       
-      <input
+     <div>
+      <span>
+        Patron Id </span>
+     <input
       type ="text"
       value = {patronId}
       onChange = {(e) => setPatronId(e.target.value)}
       placeholder="Patron Id"
+      disabled = {type === "edit"}
       />
+     </div>
 
-      <input
-      type = "text"
-      value = {returnId}
+     <div>
+      <span>
+        Return Date
+      </span>
+     <input
+      type = "date"
+      value = {returnDate}
       onChange = {(e) => setReturnDate(e.target.value)}
       placeholder = "Return Date"
       min = {moment().format("YYYY-MM-DD")}
       />
+     </div>
 
       {errorMessage && <span className = "error-message">{errorMessage}</span>}
 
@@ -134,11 +157,16 @@ function IssueForm(
         onClick ={()=> setOpen(false)}
 
         />
-        <Button title = "Validate"
-        disabled = {patronId ==="" || returnDate ===""}
-        />
+        
+        {!type ==="edit" &&
+           <Button title = "Validate"
+           onClick = {validate}
+           disabled = {patronId ==="" || returnDate ===""}
+           />}
+
         {validated && (
-          <Button title = "Issue"
+          <Button title = {type ==="edit" ? "Edit" :"Issue"}
+          
           onClick = {onIssue}
           disabled = {patronId ==="" || returnDate ===""}
           />

@@ -3,6 +3,9 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading, showLoading } from "../../../redux/loadersSlice";
 import { ReturnBook } from '../../../apicalls/issues';
+import moment from "moment";
+import Button from "../../..components/Button";
+import IssueForm from "./IssueForm";
 
 function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
   const [issues, setIssues] = React.useState([]);
@@ -148,6 +151,7 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
     onCancel = {() => setOpen(false)}
     footer = {null}
     width = {1400}
+    centered
     >
 
       <h1
@@ -158,6 +162,21 @@ function Issues({ open = false, setOpen, selectedBook,reloadBooks}) {
        columns = {columns}
        dataSource = {issues}
     />
+
+{showIssueForm && (
+        <IssueForm
+          selectedBook={selectedBook}
+          selectedIssue={selectedIssue}
+          open={showIssueForm}
+          setOpen={setShowIssueForm}
+          setSelectedBook={() => {}}
+          getData={()=>{
+            getIssues();
+            reloadBooks();
+          }}
+          type="edit"
+        />
+      )}
     </Modal>
   );
 }

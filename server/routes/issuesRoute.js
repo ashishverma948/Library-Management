@@ -84,5 +84,15 @@ router.post("/return-book",authMiddleware,async(req,res)=>{
     }
 });
 
+//edit and issue 
+router.post("/edit-issue",authMiddleware,async(req,res)=>{
+    try{
+        await Issue.findOneAndUpdate(req.body._id,req.body);
+        res.send({success: true,message: "Issue updated successfully"});
+    }catch(error){
+        res.send({success: false,message :error.message});
+    }
+});
+
 
 module.exports = router;
