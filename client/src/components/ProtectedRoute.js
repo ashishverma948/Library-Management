@@ -11,33 +11,6 @@ function ProtectedRoute({ children }) {
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-<<<<<<< Updated upstream
-     const validateUserToken = async () => {
-         try {
-
-          dispatch(ShowLoading())
-           const response = await GetLoggedInUserDetails(); 
-           dispatch(HideLoading())
-           if(response.success){
-                dispatch(SetUser(response.data));
-           }else{
-            localStorage.removeItem("token");
-            navigate("/login");
-            message.error(response.message);
-           }
-         } catch (error) {
-          localStorage.removeItem("token");
-         navigate("/login");
-          dispatch(HideLoading())
-           message.error(error.message);
-         }
-
-     }
-
-   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) {
-=======
   const validateUserToken = async () => {
     try {
       dispatch(ShowLoading());
@@ -47,7 +20,6 @@ function ProtectedRoute({ children }) {
         dispatch(SetUser(response.data));
       } else {
         localStorage.removeItem("token");
->>>>>>> Stashed changes
         navigate("/login");
         message.error(response.message);
       }

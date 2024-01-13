@@ -1,14 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react'
-
-function Reports() {
-  return (
-    <div>Reports</div>
-  )
-}
-
-export default Reports
-=======
 import { Col, message, Row } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -161,4 +150,3 @@ function Reports() {
 }
 
 export default Reports;
->>>>>>> Stashed changes

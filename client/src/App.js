@@ -10,14 +10,9 @@ import "./stylesheets/custom-components.css";
 import "./stylesheets/form-elements.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Loader from "./components/Loader";
-<<<<<<< Updated upstream
-import { useSelector } from 'react-redux';
-import BookDescription from './pages/BookDescription';
-=======
 import { useSelector } from "react-redux";
 import Profile from "./pages/Profile";
 import BookDescription from "./pages/BookDescription";
->>>>>>> Stashed changes
 
 function App() {
   const { loading } = useSelector((state) => state.loaders);
@@ -25,25 +20,6 @@ function App() {
     <div>
       {loading && <Loader />}
 
-<<<<<<< Updated upstream
-    <BrowserRouter>
-
-    <Routes>
-     <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-     
-     <Route path="/book/:id" element={<ProtectedRoute><BookDescription /></ProtectedRoute>} />
- 
-     <Route path="/Profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
- 
-
-     <Route path="/login" element={<Login />} />
-     <Route path="/register" element={<Register />} />
-     </Routes>
-     </BrowserRouter>   
-     
- 
-   </div>
-=======
       <BrowserRouter>
         <Routes>
           <Route
@@ -75,7 +51,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
->>>>>>> Stashed changes
   );
 }
 

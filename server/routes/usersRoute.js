@@ -78,50 +78,7 @@ router.post("/login", async (req, res) => {
     });
   }
 });
-// get all the users (patrons)
-router.get("/get-all-users/:role", authMiddleware, async (req,res) =>{
-    try{
-        const users =await User.find({ role: req.params.role });
-        return res.send({
-            success: true,
-            message: "Users fetched successfully",
-        data: users,
-        });
-    } catch (error) {
-        return res.send({
-            success: false,
-            message: error.message,
-        });
-    }
-});
 
-<<<<<<< Updated upstream
-
-// get user by id
-router.get("/get-user-by-id/:id", authMiddleware, async (req, res) => {
-    try {
-      const user = await User.findById(req.params.id);
-      if (!user) {
-        return res.send({
-          success: false,
-          message: "User does not exist",
-        });
-      }
-      return res.send({
-        success: true,
-        message: "User fetched successfully",
-        data: user,
-      });
-  
-    } catch (error) {
-      return res.send({
-        success: false,
-        message: 'User does not exist',
-      });
-    }
-  });
-module.exports = router;
-=======
 // get logged in user details
 router.get("/get-logged-in-user", authMiddleware, async (req, res) => {
   try {
@@ -189,4 +146,3 @@ router.get("/get-user-by-id/:id", authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
->>>>>>> Stashed changes

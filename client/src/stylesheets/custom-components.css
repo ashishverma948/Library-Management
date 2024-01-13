@@ -8,19 +8,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
-<<<<<<< Updated upstream
-.uppercase{
-    text-transform: uppercase;
-}
-a:hover{
-    cursor:pointer;
-    color :var(--colour-primary);
-    text-decoration :underline;
-=======
 
 .uppercase {
   text-transform: uppercase;
->>>>>>> Stashed changes
 }
 
 a:hover {
@@ -53,17 +43,8 @@ a:hover {
 }
 
 .shadow {
-<<<<<<< Updated upstream
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    border : 1px solid #cdcdcd;
-}
-
-.cursor-pointer{
-    cursor: pointer;
-=======
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #cdcdcd;
->>>>>>> Stashed changes
 }
 
 .cursor-pointer {
@@ -71,34 +52,9 @@ a:hover {
 }
 
 i{
-<<<<<<< Updated upstream
-    cursor: pointer;
-    font-size: 15px;
-}
-table{
-    border: 1px solid #c5c2c2;
-}
-.disabled-btn{
-    cursor :not-allowed;
-    opacity :0.5;
-}
-
-
-.error-message {
-    background-color: rgb(188, 94, 94);
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
-    width: 100%;
-  }
-  
-/* reloading hone ke leye */
-@keyframes loader-anim{
-=======
   cursor: pointer;
   font-size: 18px;
 }
->>>>>>> Stashed changes
 
 
 table{

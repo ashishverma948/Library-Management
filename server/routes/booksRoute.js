@@ -33,17 +33,6 @@ router.delete("/delete-book/:id", authMiddleware, async (req, res) => {
   }
 });
 
-<<<<<<< Updated upstream
-//get all books
-
-router.get("/get-all-books", authMiddleware, async (req,res) =>{
-    try{
-        const books = await Book.find().sort({createdAt :-1});
-        return res.send({ success: true, data: books });
-    } catch(error){
-return res.send({ success: false, message: error.message });
-    }
-=======
 // get all books
 router.get("/get-all-books", authMiddleware, async (req, res) => {
   try {
@@ -52,7 +41,6 @@ router.get("/get-all-books", authMiddleware, async (req, res) => {
   } catch (error) {
     return res.send({ success: false, message: error.message });
   }
->>>>>>> Stashed changes
 });
 // get a book by id
 router.get("/get-book-by-id/:id", authMiddleware, async (req, res) => {

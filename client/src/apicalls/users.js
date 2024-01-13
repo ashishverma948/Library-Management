@@ -30,20 +30,6 @@ export const GetLoggedInUserDetails = async () => {
     throw error;
   }
 }
-<<<<<<< Updated upstream
-// get all users
-export const GetAllUsers = async (role) =>{
-  try{
-    const response = await axiosInstance.get(`/api/users/get-all-users/${role}`);
-    return response.data;
-}
-catch (error) {
-  throw error;
-}
-};
-
-//get user by id
-=======
 
 // get all users
 export const GetAllUsers = async (role) => {
@@ -57,7 +43,6 @@ export const GetAllUsers = async (role) => {
 
 
 // get user by id
->>>>>>> Stashed changes
 
 export const GetUserById = async (id) => {
   try {
