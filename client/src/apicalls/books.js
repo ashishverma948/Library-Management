@@ -1,9 +1,18 @@
 import { axiosInstance } from "./axiosInstance";
+import { booksEndpoints } from "./allApis"
+
+const {
+  ADD_BOOK,
+  GET_ALL_BOOKS,
+  UPDATE_BOOK,
+  DELETE_BOOK,
+  GET_BOOK_BY_ID,
+} = booksEndpoints;
 
 // add book
 export const AddBook = async (payload) => {
   try {
-    const response = await axiosInstance.post("/api/books/add-book", payload);
+    const response = await axiosInstance.post(ADD_BOOK, payload);
     return response.data;
   } catch (error) {
     throw error;
@@ -13,7 +22,7 @@ export const AddBook = async (payload) => {
 // get all books
 export const GetAllBooks = async () => {
   try {
-    const response = await axiosInstance.get("/api/books/get-all-books");
+    const response = await axiosInstance.get(GET_ALL_BOOKS);
     return response.data;
   } catch (error) {
     throw error;
@@ -24,7 +33,7 @@ export const GetAllBooks = async () => {
 export const UpdateBook = async (payload) => {
   try {
     const response = await axiosInstance.put(
-      `/api/books/update-book/${payload._id}`,
+      `${UPDATE_BOOK}/${payload._id}`,
       payload
     );
     return response.data;
@@ -36,7 +45,7 @@ export const UpdateBook = async (payload) => {
 // delete book
 export const DeleteBook = async (id) => {
   try {
-    const response = await axiosInstance.delete(`/api/books/delete-book/${id}`);
+    const response = await axiosInstance.delete(`${DELETE_BOOK}/${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -46,7 +55,7 @@ export const DeleteBook = async (id) => {
 // get book by id
 export const GetBookById = async (id) => {
   try {
-    const response = await axiosInstance.get(`/api/books/get-book-by-id/${id}`);
+    const response = await axiosInstance.get(`${GET_BOOK_BY_ID}/${id}`);
     return response.data;
   } catch (error) {
     throw error;

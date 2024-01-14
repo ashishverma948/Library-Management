@@ -2,7 +2,9 @@ import { axiosInstance } from "./axiosInstance";
 import { endpoints } from "./allApis"
 const {
   LOGIN_API,
-  SIGNUP_API
+  SIGNUP_API,
+  GET_LOGGED_IN_USER_DETAILS,
+  GET_ALL_USERS,
 } = endpoints;
 
 // register a user
@@ -20,6 +22,7 @@ export const RegisterUser = async (payload) => {
 // login a user
 export const LoginUser = async (payload) => {
   try {
+    console.log(LOGIN_API)
     const response = await axiosInstance.post(LOGIN_API, payload);
     return response.data;
   } catch (error) {
@@ -31,7 +34,7 @@ export const LoginUser = async (payload) => {
 
 export const GetLoggedInUserDetails = async () => {
   try {
-    const response = await axiosInstance.get("/api/users/get-logged-in-user");
+    const response = await axiosInstance.get(GET_LOGGED_IN_USER_DETAILS);
     return response.data;
   } catch (error) {
     throw error;
