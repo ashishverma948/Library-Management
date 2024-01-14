@@ -28,8 +28,10 @@ router.post("/register", async (req, res) => {
     return res.send({
       success: true,
       message: "User created successfully , please login",
+      newUser
     });
   } catch (error) {
+    console.log("Error in user registration", error);
     return res.send({
       success: false,
       message: error.message,
@@ -70,6 +72,7 @@ router.post("/login", async (req, res) => {
       success: true,
       message: "Login successful",
       data: token,
+      user
     });
   } catch (error) {
     return res.send({
@@ -93,6 +96,7 @@ router.get("/get-logged-in-user", authMiddleware, async (req, res) => {
       success: true,
       message: "User details fetched successfully",
       data: user,
+      user
     });
   } catch (error) {
     return res.send({

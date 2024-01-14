@@ -1,11 +1,18 @@
 import { axiosInstance } from "./axiosInstance";
+import { endpoints } from "./allApis"
+const {
+  LOGIN_API,
+  SIGNUP_API
+} = endpoints;
 
 // register a user
 export const RegisterUser = async (payload) => {
-  try {
-    const response = await axiosInstance.post("/api/users/register", payload);
+  try {//yha pe changes krne h
+    const response = await axiosInstance.post(SIGNUP_API, payload);
+    console.log(response)
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -13,7 +20,7 @@ export const RegisterUser = async (payload) => {
 // login a user
 export const LoginUser = async (payload) => {
   try {
-    const response = await axiosInstance.post("/api/users/login", payload);
+    const response = await axiosInstance.post(LOGIN_API, payload);
     return response.data;
   } catch (error) {
     throw error;
@@ -42,7 +49,7 @@ export const GetAllUsers = async (role) => {
 };
 
 
-// get user by id
+// // get user by id
 
 export const GetUserById = async (id) => {
   try {
