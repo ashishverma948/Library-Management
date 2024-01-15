@@ -9,7 +9,7 @@ const {
 
 // register a user
 export const RegisterUser = async (payload) => {
-  try {//yha pe changes krne h
+  try {
     const response = await axiosInstance.post(SIGNUP_API, payload);
     console.log(response)
     return response.data;
@@ -44,7 +44,7 @@ export const GetLoggedInUserDetails = async () => {
 // get all users
 export const GetAllUsers = async (role) => {
   try {
-    const response = await axiosInstance.get(`/api/users/get-all-users/${role}`);
+    const response = await axiosInstance.get(`${GET_ALL_USERS}/${role}`);
     return response.data;
   } catch (error) {
     throw error;
