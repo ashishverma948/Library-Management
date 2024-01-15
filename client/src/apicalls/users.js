@@ -5,6 +5,7 @@ const {
   SIGNUP_API,
   GET_LOGGED_IN_USER_DETAILS,
   GET_ALL_USERS,
+  GET_USER_BY_ID
 } = endpoints;
 
 // register a user
@@ -56,7 +57,7 @@ export const GetAllUsers = async (role) => {
 
 export const GetUserById = async (id) => {
   try {
-    const response = await axiosInstance.get(`/api/users/get-user-by-id/${id}`);
+    const response = await axiosInstance.get(`${GET_USER_BY_ID}/${id}`);
     return response.data;
   } catch (error) {
     throw error;

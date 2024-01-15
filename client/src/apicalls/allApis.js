@@ -5,6 +5,7 @@ export const endpoints = {
   LOGIN_API: BASE_URL + "/users/login",
   GET_LOGGED_IN_USER_DETAILS: BASE_URL + "/users/get-logged-in-user",
   GET_ALL_USERS: BASE_URL + "/users/get-all-users",
+  GET_USER_BY_ID: BASE_URL + "/users/get-user-by-id",
 };
 
 export const booksEndpoints = {

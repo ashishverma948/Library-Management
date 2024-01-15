@@ -6,6 +6,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 // issue a book to patron
 router.post("/issue-new-book", authMiddleware, async (req, res) => {
   try {
+    console.log("printing req.body", req.body)
     // inventory adjustment (available copies must be decremented by 1)
     await Book.findOneAndUpdate(
       { _id: req.body.book },
